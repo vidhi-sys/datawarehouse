@@ -1,125 +1,268 @@
-# Data Warehouse & Analytics Project
+<div align="center">
 
-> *End-to-end data pipeline · Medallion Architecture · SQL Server · Star Schema · Business Insights via pure SQL*
-
----
-
-## ⚡ At a Glance
-
-| 🥉 Layers | 📂 Sources | ⭐ Model | 🕐 Snapshot |
-|-----------|-----------|---------|------------|
-| 3 (Bronze → Silver → Gold) | ERP & CRM CSV files | Star Schema | Latest only (no historization) |
-
----
-
-## 🌊 How Data Flows
+<br/>
 
 ```
-CSV Files  ──►  🥉 Bronze  ──►  🥈 Silver  ──►  🥇 Gold  ──►  📊 Analytics
-(ERP/CRM)       Raw Ingest      Clean+Transform   Star Schema    SQL Reports
+██████╗  █████╗ ████████╗ █████╗
+██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
+██║  ██║███████║   ██║   ███████║
+██║  ██║██╔══██║   ██║   ██╔══██║
+██████╔╝██║  ██║   ██║   ██║  ██║
+╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
 ```
 
----
+## W A R E H O U S E &nbsp;&nbsp;+&nbsp;&nbsp; A N A L Y T I C S
 
-##  Medallion Architecture
+*An end-to-end data engineering project built on SQL Server*
 
-### 🥉 Bronze — Raw Zone
-- Data lands here **exactly as-is** from CSV source files
-- Zero transformations — pure source of truth
-- `ERP data` + `CRM data` ingested into SQL Server
+<br/>
 
-### 🥈 Silver — Clean Zone
-- Nulls evicted · Duplicates eliminated · Types standardized
-- Data becomes consistent, reliable, and trustworthy
-- Validation checks applied before promotion
+[![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server)
+[![Architecture](https://img.shields.io/badge/Medallion_Architecture-gold?style=flat-square&logoColor=black)](.)
+[![Schema](https://img.shields.io/badge/Star_Schema-4A90D9?style=flat-square)](.)
+[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](./LICENSE)
+[![Status](https://img.shields.io/badge/Status-Complete-22c55e?style=flat-square)](.)
 
-### 🥇 Gold — Business Zone
-- Structured as a **Star Schema** (Fact + Dimension tables)
-- Curated for fast queries and BI reporting
-- The layer analysts actually touch
+<br/>
+
+</div>
 
 ---
 
-##  Analytics Objectives
+<br/>
 
-| Focus Area | What We Uncover |
-|------------|----------------|
-|  Customer Behavior | Who buys, when, and how often they return |
-|  Product Performance | Winners, laggards, and what drives the numbers |
-|  Sales Trends | Revenue patterns, seasonal shifts, growth signals |
+## `01` &nbsp; Project Overview
+
+This project implements a **production-style data warehouse** using the Medallion Architecture pattern — taking raw ERP and CRM data from CSV files all the way through to a clean, analytics-ready Star Schema model.
+
+The goal: demonstrate real-world data engineering skills through structured ingestion, transformation, and modeling.
+
+<br/>
 
 ---
 
-##  Skills Demonstrated
+<br/>
+
+## `02` &nbsp; Architecture — Medallion Model
+
+<br/>
 
 ```
-SQL Development          ████████████████████  Advanced
-ETL Pipeline Design      ███████████████████   Advanced
-Data Modeling            ██████████████████    Advanced
-Data Cleaning            ████████████████████  Advanced
-Medallion Architecture   ██████████████████    Intermediate
-Analytics & Reporting    ███████████████████   Intermediate
+  ┌─────────────────────────────────────────────────────────────┐
+  │                      DATA SOURCES                           │
+  │              📄 ERP CSV    +    📄 CRM CSV                  │
+  └───────────────────────────┬─────────────────────────────────┘
+                              │
+                              ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │  🥉  BRONZE LAYER                                           │
+  │      Raw ingestion — no transformation                      │
+  │      Full source fidelity preserved                         │
+  └───────────────────────────┬─────────────────────────────────┘
+                              │
+                              ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │  🥈  SILVER LAYER                                           │
+  │      Cleansed + standardized                                │
+  │      Null handling · Deduplication · Type normalization     │
+  └───────────────────────────┬─────────────────────────────────┘
+                              │
+                              ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │  🥇  GOLD LAYER                                             │
+  │      Business-ready star schema                             │
+  │      Fact & dimension tables · Optimized for analytics      │
+  └───────────────────────────┬─────────────────────────────────┘
+                              │
+                              ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │  📊  ANALYTICS                                              │
+  │      Customers · Products · Sales · Revenue                 │
+  └─────────────────────────────────────────────────────────────┘
 ```
 
-- **SQL Development** — Complex queries, joins, aggregations, window functions
-- **ETL Design** — Extract, transform, load pipelines built for reliability
-- **Data Modeling** — Star schema with well-defined fact & dimension tables
-- **Data Cleaning** — Null handling, deduplication, type normalization
-- **Architecture** — Medallion pattern applied end-to-end
-- **Analytics** — Business insights via structured SQL reporting
+<br/>
 
 ---
 
-##  Tech Stack
+<br/>
 
-| Category | Tool |
-|----------|------|
-| Database | SQL Server Express |
-| IDE | SQL Server Management Studio (SSMS) |
-| Source Data | CSV Files (ERP & CRM) |
-| Diagramming | Draw.io |
-| Version Control | Git & GitHub |
-| Project Tracking | Notion |
+## `03` &nbsp; Layer Breakdown
+
+<br/>
+
+### &nbsp;&nbsp;🥉 &nbsp; Bronze — *Raw Ingestion*
+
+> The landing zone. Data enters exactly as-is from source files.
+
+- Direct bulk load from CSV (ERP + CRM)
+- Zero transformation applied
+- Serves as the immutable source of truth
+- Enables full reprocessing at any point
+
+<br/>
+
+### &nbsp;&nbsp;🥈 &nbsp; Silver — *Cleanse & Standardize*
+
+> Data is made trustworthy and consistent.
+
+- Null value handling & imputation
+- Duplicate record resolution
+- Data type normalization across sources
+- Cross-source field standardization
+- Row-level validation & quality checks
+
+<br/>
+
+### &nbsp;&nbsp;🥇 &nbsp; Gold — *Business-Ready Model*
+
+> Structured for consumption by analysts and BI tools.
+
+- Star Schema design (fact + dimensions)
+- Relationships enforced at the model level
+- Pre-aggregated where applicable
+- Optimized for query performance
+
+<br/>
 
 ---
 
-##  Repository Structure
+<br/>
+
+## `04` &nbsp; Analytics Coverage
+
+<br/>
+
+| Domain | What It Answers |
+|--------|----------------|
+| 👥 **Customers** | Who buys, how often, and what segments they fall into |
+| 📦 **Products** | Which products perform, which underperform, and why |
+| 📈 **Sales** | Revenue trends, seasonality, and growth patterns |
+
+<br/>
+
+---
+
+<br/>
+
+## `05` &nbsp; Skills Demonstrated
+
+<br/>
+
+```
+  Data Modeling & Star Schema    ████████████████████  Core
+  ETL Pipeline Design            ███████████████████░  Strong
+  SQL Development                ████████████████████  Core
+  Data Cleansing & Validation    ██████████████████░░  Strong
+  Architecture Design            ███████████████████░  Strong
+  Analytical Thinking            ██████████████████░░  Strong
+```
+
+<br/>
+
+---
+
+<br/>
+
+## `06` &nbsp; Tech Stack
+
+<br/>
+
+| Category | Tools |
+|----------|-------|
+| **Database** | Microsoft SQL Server |
+| **IDE** | SSMS (SQL Server Management Studio) |
+| **Data Format** | CSV (ERP + CRM sources) |
+| **Diagramming** | Draw.io |
+| **Version Control** | Git + GitHub |
+| **Project Mgmt** | Notion |
+| **Design Patterns** | Medallion Architecture, Star Schema |
+
+<br/>
+
+---
+
+<br/>
+
+## `07` &nbsp; Repository Structure
+
+<br/>
 
 ```
 data-warehouse-project/
 │
-├── datasets/               ← raw CSV source files
-├── docs/                   ← architecture & model diagrams
-├── scripts/
-│   ├── bronze/             ← raw ingestion scripts
-│   ├── silver/             ← cleaning & transformation
-│   └── gold/               ← star schema models
+├── 📁 datasets/               ← Raw source CSV files (ERP + CRM)
 │
-├── tests/                  ← validation queries
+├── 📁 docs/                   ← Architecture diagrams & documentation
+│
+├── 📁 scripts/
+│   ├── 📁 bronze/             ← Ingestion scripts (raw load)
+│   ├── 📁 silver/             ← Transformation & cleansing
+│   └── 📁 gold/               ← Star schema modeling
+│
+├── 📁 tests/                  ← Data validation queries
+│
 ├── README.md
 ├── LICENSE
 └── .gitignore
 ```
 
----
-
-##  Key Highlights
-
-- ✅ End-to-end **data pipeline** from raw CSV to business-ready insights
-- ✅ Real-world **data cleaning & transformation** challenges tackled
-- ✅ Scalable **Medallion Architecture** (Bronze → Silver → Gold)
-- ✅ Optimized **Star Schema** analytical data models
-- ✅ Pure **SQL-based analytics** — no external BI tools required
-- ✅ Well-documented, structured, and portfolio-ready
+<br/>
 
 ---
 
-##  License
+<br/>
 
-This project is licensed under the **MIT License** — free to use, learn from, and build upon.
+## `08` &nbsp; Getting Started
+
+<br/>
+
+```sql
+-- 1. Clone the repository
+git clone https://github.com/yourusername/data-warehouse-project.git
+
+-- 2. Open SSMS and connect to your SQL Server instance
+
+-- 3. Run scripts in order:
+--    scripts/bronze/  →  scripts/silver/  →  scripts/gold/
+
+-- 4. Validate with test queries in /tests
+```
+
+<br/>
+
+---
+
+<br/>
+
+## `09` &nbsp; About the Author
+
+<br/>
+
+<div align="center">
+
+### Vidhi Udasi
+
+*AIML · Data Analysis · SQL · Business Intelligence*
+
+📍 VIT Bhopal, India &nbsp;|&nbsp; 📧 udasividhi2@gmail.com
+
+<br/>
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com)
+[![GeeksforGeeks](https://img.shields.io/badge/GeeksforGeeks-2F8D46?style=flat-square&logo=geeksforgeeks&logoColor=white)](https://geeksforgeeks.org)
+
+<br/>
+
+*Built to learn. Designed to last. Open source under MIT License.*
+
+</div>
+
+<br/>
 
 ---
 
 <div align="center">
-  <sub>Built with brain for learning · Designed for portfolios · Powered by SQL</sub>
+<sub>◈ &nbsp; Data Warehouse & Analytics Project &nbsp; ◈</sub>
 </div>
