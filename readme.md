@@ -15,17 +15,23 @@
 
 *An end-to-end data engineering project built on SQL Server*
 
-<br/>
-
-[![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoft-sql-server&logoColor=white)](https://www.microsoft.com/en-us/sql-server)
-[![Architecture](https://img.shields.io/badge/Medallion_Architecture-gold?style=flat-square&logoColor=black)](.)
-[![Schema](https://img.shields.io/badge/Star_Schema-4A90D9?style=flat-square)](.)
-[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](./LICENSE)
-[![Status](https://img.shields.io/badge/Status-Complete-22c55e?style=flat-square)](.)
-
-<br/>
-
 </div>
+
+<br/>
+
+<p align="center">
+  <a href="https://www.microsoft.com/en-us/sql-server"><img src="https://img.shields.io/badge/SQL_Server-CC2927?style=flat-square&logo=microsoft-sql-server&logoColor=white" alt="SQL Server"/></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/Medallion_Architecture-DAA520?style=flat-square&logoColor=black" alt="Architecture"/>
+  &nbsp;
+  <img src="https://img.shields.io/badge/Star_Schema-4A90D9?style=flat-square" alt="Schema"/>
+  &nbsp;
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-22c55e?style=flat-square" alt="License"/></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/Status-Complete-22c55e?style=flat-square" alt="Status"/>
+</p>
+
+<br/>
 
 ---
 
